@@ -1,0 +1,126 @@
+/* ==========================================================================
+   POKEDAIX — les Pokémon s’invitent partout
+   Illustrations originales (SVG) dans le style « sticker » : contour blanc + ombre.
+   Sept Pokémon cachés dans la page (data-catch) : on clique pour les attraper.
+   ========================================================================== */
+:root{
+  --sticker:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 14px 16px rgba(0,0,0,.42));
+  --sticker-sm:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 6px 8px rgba(0,0,0,.35));
+}
+
+/* ---------- stickers cliquables ---------- */
+.pk{position:absolute;z-index:6;width:var(--w,150px);aspect-ratio:1;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;will-change:transform}
+.pk svg{display:block;width:100%;height:100%;overflow:visible;filter:var(--sticker);will-change:transform}
+.pk::after{content:"";position:absolute;inset:-8%;border-radius:50%}
+.pk__note{position:absolute;left:62%;top:6%;font-family:var(--f-display);font-weight:800;font-size:clamp(1.3rem,2vw,2rem);color:var(--yellow);text-shadow:0 2px 0 #1a1424,0 0 12px rgba(255,210,63,.6);opacity:0;pointer-events:none}
+
+.band{position:relative;z-index:6;margin-top:-2.4rem}
+.marquee{margin:0 -3vw}
+.marquee__row--a .mq-pk{width:clamp(46px,5.2vw,74px);height:clamp(46px,5.2vw,74px);filter:var(--sticker-sm);margin-inline:.2rem}
+
+.pk--pikachu{--w:clamp(104px,12.5vw,190px);right:9%;top:calc(var(--w) * -.76)}
+.manifest{position:relative;overflow:hidden;padding-bottom:clamp(9rem,21vw,17rem)}
+.pk--ecto{--w:clamp(130px,20vw,310px);right:6%;bottom:0}
+.pk--salameche{--w:clamp(84px,12vw,170px);right:5%;top:calc(4vw + 2.4rem)}
+.pk--miaouss{--w:clamp(96px,12vw,170px);left:-2%;bottom:15%}
+.gallery__head{position:relative}
+.pk--evoli{--w:clamp(92px,10vw,140px);right:0;top:-5.6rem}
+.fan__pin{position:relative}
+.pk--rondou{--w:clamp(92px,10.5vw,160px);right:1.5%;top:clamp(5.2rem,12vh,8rem)}
+.visit{position:relative}
+.pk--voltorb{--w:clamp(76px,8.5vw,124px);right:3%;top:2.2rem}
+
+/* ---------- pièce qui tourne près du rachat ---------- */
+.buy__coin{position:absolute;right:3%;top:20%;width:clamp(48px,5vw,72px);height:clamp(48px,5vw,72px);filter:var(--sticker-sm);z-index:4}
+
+/* ---------- badges Pokédex sur les cartes de l’univers ---------- */
+.ucard__pk{position:absolute;top:.7rem;right:.7rem;z-index:3;width:clamp(64px,5.6vw,92px);height:clamp(64px,5.6vw,92px);filter:var(--sticker-sm);transform:rotate(8deg);transition:transform .6s var(--ease)}
+.ucard:hover .ucard__pk{transform:rotate(-6deg) scale(1.12)}
+
+/* ---------- Pokémon de l’histoire (change à chaque étape) ---------- */
+.story__pk{position:absolute;left:14px;bottom:12px;z-index:7;width:clamp(88px,8vw,128px);height:clamp(88px,8vw,128px);opacity:0;transform:translateY(26px) scale(.55) rotate(-14deg);transition:opacity .5s,transform .9s var(--ease);filter:var(--sticker);pointer-events:none}
+.story__pk.is-on{opacity:1;transform:none;transition-delay:.25s}
+
+/* ---------- filigrane sur les cartes « épisode » ---------- */
+.fcard__wm{position:absolute;right:-6%;bottom:14%;width:58%;height:auto;aspect-ratio:1;opacity:.2;transform:rotate(-8deg);pointer-events:none;mix-blend-mode:screen}
+.fcard__in>*:not(.fcard__wm):not(.glare){position:relative;z-index:1}
+
+/* ---------- tampon sur le billet de réservation ---------- */
+.ticket__stamp{position:absolute;right:1.1rem;top:1rem;width:66px;height:66px;transform:rotate(12deg);filter:var(--sticker-sm)}
+
+/* ---------- section « Qui se cache dans la boutique ? » ---------- */
+.dex{position:relative;padding:clamp(6rem,10vw,9rem) 0 clamp(5rem,9vw,8rem);background:var(--ink)}
+.dex__lead{max-width:36rem;color:var(--muted)}
+.dex__lead strong{color:var(--yellow);font-weight:700}
+.dex__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.7rem,1.4vw,1.2rem);margin-top:3rem}
+.dex__card{position:relative;padding:.8rem .8rem 1.2rem;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(245,241,232,.06),rgba(245,241,232,.01));transition:transform .7s var(--ease),border-color .5s,background-color .5s}
+.dex__card:hover{transform:translateY(-6px);border-color:rgba(245,241,232,.35)}
+.dex__art{position:relative;display:grid;place-items:center;aspect-ratio:1;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 50% 42%,#7a5af0 0%,#3b247f 58%,#1b1140 100%)}
+.dex__art::before{content:"";position:absolute;inset:-50%;background:repeating-conic-gradient(rgba(255,255,255,.09) 0 7deg,transparent 7deg 14deg);animation:spin 40s linear infinite;opacity:.8}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dex__svg{position:relative;width:72%;height:72%;filter:brightness(0);transition:filter .9s var(--ease),transform .9s var(--ease)}
+.dex__card.is-revealed .dex__svg{filter:var(--sticker);transform:scale(1.04) rotate(-2deg)}
+.dex__ball{position:absolute;right:.6rem;top:.6rem;width:28px;height:28px;filter:grayscale(1) brightness(.55);transition:filter .6s,transform .6s var(--ease);z-index:2}
+.dex__card.is-found .dex__ball{filter:none;transform:rotate(360deg) scale(1.15)}
+.dex__card.is-found{border-color:var(--yellow)}
+.dex__txt{padding:.9rem .4rem 0}
+.dex__no{color:var(--red-hot)}
+.dex__card[data-type="elec"] .dex__no{color:var(--yellow)}
+.dex__card[data-type="ghost"] .dex__no{color:#b79bff}
+.dex__card[data-type="fire"] .dex__no{color:#ff9a4a}
+.dex__card[data-type="fairy"] .dex__no{color:#ff9ccd}
+.dex__card[data-type="normal"] .dex__no{color:#d8cdb4}
+.dex__txt h3{font-family:var(--f-display);font-weight:800;font-size:clamp(1.15rem,1.6vw,1.5rem);letter-spacing:-.03em;line-height:1.1;margin:.3rem 0 .45rem}
+.dex__txt p:last-child{font-size:.9rem;line-height:1.5;color:var(--muted)}
+.dex__grid.is-js .dex__card:not(.is-revealed) .dex__txt{opacity:0;transform:translateY(14px)}
+.dex__txt{transition:opacity .7s .2s,transform .9s .2s var(--ease)}
+.dex__score{display:grid;place-content:center;justify-items:center;gap:.3rem;padding:1.4rem;border:2px dashed rgba(245,241,232,.25);border-radius:22px;text-align:center}
+.dex__score svg{width:56px;height:56px;margin-bottom:.4rem}
+.dex__big{font-weight:900;font-size:clamp(2.4rem,4.4vw,4rem);line-height:1;letter-spacing:-.04em}
+.dex__big span{color:var(--yellow)}
+.dex__score .mono{color:var(--red-hot)}
+.dex__hint{font-size:.85rem;color:var(--muted);max-width:15rem;margin-top:.5rem}
+
+/* ---------- compteur Pokédex + capture ---------- */
+.hud{position:fixed;left:14px;bottom:14px;z-index:88;display:flex;align-items:center;gap:.6rem;padding:.5rem 1rem .5rem .55rem;border-radius:999px;background:rgba(20,18,29,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 14px 30px -12px rgba(0,0,0,.7);opacity:0;transform:translateY(24px);transition:opacity .5s,transform .7s var(--ease);pointer-events:none}
+.hud.is-on{opacity:1;transform:none}
+.hud svg{width:30px;height:30px}
+.hud b{color:var(--yellow);font-weight:500}
+.flyball{position:fixed;z-index:210;width:58px;height:58px;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(0,0,0,.5))}
+.flyball svg{width:100%;height:100%;display:block}
+.confetti{position:fixed;top:0;left:0;z-index:225;width:26px;height:26px;pointer-events:none}
+.confetti svg{width:100%;height:100%;display:block}
+
+.finale{position:fixed;inset:0;z-index:220;display:grid;place-items:center;padding:1.2rem;background:rgba(10,9,16,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
+.finale[hidden]{display:none}
+.finale.is-on{opacity:1;visibility:visible;transition:opacity .5s,visibility 0s}
+.finale__card{width:min(100%,560px);padding:clamp(1.6rem,4vw,2.6rem);border-radius:28px;text-align:center;color:#fff;background:linear-gradient(150deg,#E4182D,#8b0b1e 60%,#2a0f45 130%);border:3px solid var(--yellow);box-shadow:0 40px 80px -30px rgba(0,0,0,.8);transform:scale(.9) rotate(-2deg);transition:transform .8s var(--ease)}
+.finale.is-on .finale__card{transform:none}
+.finale__card h2{font-weight:900;font-size:clamp(2rem,6vw,3.4rem);line-height:1;letter-spacing:-.04em;margin:.6rem 0 1rem}
+.finale__row{display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem;margin:1.4rem 0 1.6rem}
+.finale__row svg{width:clamp(44px,9vw,64px);height:clamp(44px,9vw,64px);filter:var(--sticker-sm)}
+
+@media (max-width:800px){
+  .hud{bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+@media (max-width:900px){
+  .dex__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .pk--pikachu{--w:96px;right:5%}
+  .pk--ecto{--w:140px;right:-12px}
+  .pk--salameche{--w:78px;top:calc(4vw + 1rem)}
+  .pk--miaouss{--w:90px;left:0;bottom:26%}
+  .pk--evoli{--w:84px;top:-4.3rem}
+  .pk--rondou{--w:82px;right:10px;top:.6rem}
+  .pk--voltorb{--w:70px;top:1.4rem}
+  .story__pk{width:76px;height:76px}
+  .dex__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dex__txt p:last-child{font-size:.8rem}
+  .dex__txt h3{font-size:1.02rem}
+  .dex__hint{font-size:.78rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .dex__art::before{animation:none}
+  .dex__grid.is-js .dex__card:not(.is-revealed) .dex__txt{opacity:1;transform:none}
+}
