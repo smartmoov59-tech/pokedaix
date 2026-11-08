@@ -171,14 +171,14 @@
     </symbol>
 
     <symbol id="pk-voltorb" viewBox="0 0 200 200">
-      <circle cx="100" cy="108" r="76" fill="#F5F1E8"/>
-      <path d="M24 108A76 76 0 0 1 176 108Z" fill="#E4272F"/>
-      <rect x="24" y="100" width="152" height="16" fill="#1a1424"/>
+      <radialGradient id="pkVoltBody" cx=".34" cy=".3" r=".95"><stop offset="0" stop-color="#F6F4F8"/><stop offset="1" stop-color="#B9B6C6"/></radialGradient>
+      <radialGradient id="pkVoltRed" cx=".34" cy=".25" r=".95"><stop offset="0" stop-color="#F2656B"/><stop offset="1" stop-color="#C73641"/></radialGradient>
+      <circle cx="100" cy="108" r="76" fill="url(#pkVoltBody)"/>
+      <path d="M24.4 100A76 76 0 0 1 175.6 100L108 123Q100 125 92 123Z" fill="url(#pkVoltRed)" stroke="#1a1424" stroke-width="5" stroke-linejoin="round"/>
+      <g id="pkVoltEye"><path d="M38 104L94 123L94 136Q92 150 68 150Q40 146 38 104Z" fill="#fff" stroke="#1a1424" stroke-width="5" stroke-linejoin="round"/><ellipse cx="84" cy="137" rx="7.5" ry="9.5" fill="#1a1424"/><circle cx="86" cy="133" r="2.4" fill="#fff"/></g>
+      <use href="#pkVoltEye" transform="translate(200 0) scale(-1 1)"/>
+      <ellipse cx="66" cy="60" rx="24" ry="11" transform="rotate(-32 66 60)" fill="#fff" opacity=".5"/>
       <circle cx="100" cy="108" r="76" fill="none" stroke="#1a1424" stroke-width="6"/>
-      <ellipse cx="70" cy="100" rx="21" ry="23" fill="#fff" stroke="#1a1424" stroke-width="5"/><circle cx="74" cy="104" r="9.5" fill="#1a1424"/><circle cx="77" cy="100" r="3" fill="#fff"/>
-      <ellipse cx="130" cy="100" rx="21" ry="23" fill="#fff" stroke="#1a1424" stroke-width="5"/><circle cx="126" cy="104" r="9.5" fill="#1a1424"/><circle cx="129" cy="100" r="3" fill="#fff"/>
-      <path d="M44 66L92 82M156 66L108 82" stroke="#1a1424" stroke-width="7" stroke-linecap="round"/>
-      <path d="M50 62Q64 46 84 42" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".55"/>
     </symbol>
 
     <symbol id="pk-coin" viewBox="0 0 100 100">
